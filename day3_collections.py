@@ -1,4 +1,9 @@
 
+my_string = "oNice is awesome"
+my_string = my_string.split(" ")
+print (my_string)
+
+
 my_list = ["sam", 23, ["the dark", "wasps", 37]]
 
 print (my_list)
