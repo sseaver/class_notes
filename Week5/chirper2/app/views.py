@@ -1,16 +1,17 @@
 from django.shortcuts import render
 
 from app.models import Chirp
+from app.forms import ChirpForm
 # Create your views here.
 
 
 def index_view(request):
-    print(request.POST)
     if request.POST:
-        chirp_body = request.POST["chirp_body"]
-        if chirp_body != "" and len(chirp_body) <= 140:
-            Chirp.objects.create(body=chirp_body)
+        instance = ChirpForm(request.POST)
+        if instance.is_valid():
+            instance.save()
     context = {
+        "form": ChirpForm(),
         "all_chirps": Chirp.objects.all().order_by("-created")
     }
     return render(request, "index.html", context)
