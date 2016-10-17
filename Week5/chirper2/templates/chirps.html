@@ -1,12 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1></h1>
 {% for chirp in object_list %}
 <div class="panel panel-default">
   <div class="panel-body">
+    <h2>{{ chirp.score }}</h2>
     <a href="{% url 'chirp_detail_view' chirp.id %}">{{ chirp.body }}</a>
     <p>
       {{ chirp.user }}
+    </p>
+    <p>
+      <form class="" action="{% url 'chirp_upvote_view' chirp.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="value" value=True>
+        <input type="submit" name="" value="+">
+      </form>
+      <form class="" action="{% url 'chirp_downvote_view' chirp.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="value" value=False>
+        <input type="submit" name="" value="-">
+      </form>
     </p>
   </div>
 </div>
