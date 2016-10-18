@@ -25,7 +25,7 @@ class ChirpDetailView(DetailView):
 
 class ChirpCreateView(CreateView):
     model = Chirp
-    success_url = "/chirps"
+    success_url = "/"
     fields = ('body',)
 
     def form_valid(self, form):
