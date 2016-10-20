@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from menu.models import Special, Profile
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -11,8 +12,13 @@ class IndexView(ListView):
     model = Special
 
 
-class ProfileView(TemplateView):
+class ProfileUpdateView(UpdateView):
     template_name = "profile.html"
+    fields = ("access_level",)
+    success_url = reverse_lazy("profile_view")
+
+    def get_object(self):
+        return Profile.objects.get(user=self.request.user)
 
 
 class SpecialUpdateView(UpdateView):
