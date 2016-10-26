@@ -8,7 +8,7 @@ def get_data(endpoint, lookup="name"):
         json_result = result.json()
 
         for person in json_result["results"]:
-            print (person[lookup])
+            print(person[lookup])
 
         if input("Press Enter to keep going, type n to stop"):
             break
